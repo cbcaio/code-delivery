@@ -1,42 +1,36 @@
 ## Sistema de delivery com Laravel 5.1 + Ionic
 
-###CapÌtulo 1: Criando a base do sistema
+###Cap√≠tulo 1: Criando a base do sistema
 
-- Gerar APP_KEY caso n„o tiver sido gerada na instalaÁ„o do laravel
-	php artisan key:generate
-
-- Definir vari·veis no .env
-
-- Mudar nome da aplicaÁ„o 
-	php artisan app:name [namespace]
-
-- Criar database
-
-- Em relaÁ„o aos Models:
-	CriaÁ„o pasta app\Models 
-	Transferir User para a pasta e corrigir namespace e config\auth.php
-	Category, Product, Client, Order, OrderItem models criados
-	
-- Em relaÁ„o ‡s Migrations:
-	create_categories_table
-	create_products_table
-	create_clients_table
-	create_orders_table
-	create_order_items_table
-	
-- Em relaÁ„o ‡s Factories:
-	Category, Product, Client factories criadas
-	
-- Em relaÁ„o aos Seeds:
-	UserTableSeeder (Client sendo criado junto), CategoryTableSeeder, ProductTableSeeder (n„o utilizado, ver CategoryTableSeeder)
-	
-- Relacionamentos:
-	Category hasMany Product
-	Product belongsTo Category
-	User hasOne Client
-	Client hasOne User
-	Order hasMany OrderItem
-	Order belongsTo User
-	Order hasMany Product
-	OrderItem belongsTo Product
-	OrderItem belongsTo Order
+1. Gerar APP_KEY caso n√£o tiver sido gerada na instala√ß√£o do laravel
+```php
+  php artisan key:generate
+```
+2. Definir vari√°veis no .env
+3. Mudar nome da aplica√ß√£o 
+  php artisan app:name [namespace]
+4. Criar database
+5. Em rela√ß√£o aos Models:
+  1. Cria√ß√£o pasta app\Models 
+  2. Transferir User para a pasta e corrigir namespace e config\auth.php
+  3. Category, Product, Client, Order, OrderItem models criados
+6. Em rela√ß√£o √†s Migrations:
+  1. create_categories_table
+  2. create_products_table
+  3. create_clients_table
+  4. create_orders_table
+  5. create_order_items_table
+7. Em rela√ß√£o √†s Factories:
+  Category, Product, Client factories criadas
+8. Em rela√ß√£o aos Seeds:
+  UserTableSeeder (Client sendo criado junto), CategoryTableSeeder, ProductTableSeeder (n√£o utilizado, ver CategoryTableSeeder)
+9. Relacionamentos:
+  - [x] Category hasMany Product
+  - [x] Product belongsTo Category
+  - [x] User hasOne Client
+  - [x] Client hasOne User
+  - [x] Order hasMany OrderItem
+  - [x] Order belongsTo User
+  - [x] Order hasMany Product
+  - [x] OrderItem belongsTo Product
+  - [x] OrderItem belongsTo Order
