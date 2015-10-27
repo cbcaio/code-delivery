@@ -3,14 +3,14 @@
 ###Capítulo 1: Criando a base do sistema
 
 1. Gerar APP_KEY caso não tiver sido gerada na instalação do laravel
-```php
-  php artisan key:generate
-```
+  ```
+    php artisan key:generate
+  ```
 2. Definir variáveis no .env
 3. Mudar nome da aplicação 
-```php
-  php artisan app:name [namespace]
-```
+  ```
+    php artisan app:name [namespace]
+  ```
 4. Criar database
 5. Em relação aos Models:
   - Criada pasta app\Models 
