@@ -8,29 +8,35 @@
 ```
 2. Definir variáveis no .env
 3. Mudar nome da aplicação 
+```php
   php artisan app:name [namespace]
+```
 4. Criar database
 5. Em relação aos Models:
-  1. Criação pasta app\Models 
-  2. Transferir User para a pasta e corrigir namespace e config\auth.php
-  3. Category, Product, Client, Order, OrderItem models criados
-6. Em relação às Migrations:
-  1. create_categories_table
-  2. create_products_table
-  3. create_clients_table
-  4. create_orders_table
-  5. create_order_items_table
-7. Em relação às Factories:
-  Category, Product, Client factories criadas
+  - Criada pasta app\Models 
+  - User transferi para nova paste e namespace corrigido (no config\auth.php também)
+  - Category, Product, Client, Order, OrderItem models criados
+6. Em relação às Migrations criadas:
+  - create_categories_table
+  - create_products_table
+  - create_clients_table
+  - create_orders_table
+  - create_order_items_table
+7. Em relação às Factories criadas:
+  - Category
+  - Product
+  - Client
 8. Em relação aos Seeds:
-  UserTableSeeder (Client sendo criado junto), CategoryTableSeeder, ProductTableSeeder (não utilizado, ver CategoryTableSeeder)
+  - UserTableSeeder (Client sendo criado junto)
+  - CategoryTableSeeder
+  - ProductTableSeeder (não utilizado, ver CategoryTableSeeder)
 9. Relacionamentos:
-  - [x] Category hasMany Product
-  - [x] Product belongsTo Category
-  - [x] User hasOne Client
-  - [x] Client hasOne User
-  - [x] Order hasMany OrderItem
-  - [x] Order belongsTo User
-  - [x] Order hasMany Product
-  - [x] OrderItem belongsTo Product
-  - [x] OrderItem belongsTo Order
+  - Category hasMany Product
+  - Product belongsTo Category
+  - User hasOne Client
+  - Client hasOne User
+  - Order hasMany OrderItem
+  - Order belongsTo User
+  - Order hasMany Product
+  - OrderItem belongsTo Product
+  - OrderItem belongsTo Order
