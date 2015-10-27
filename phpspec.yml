@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: CodeDelivery
+        psr4_prefix: CodeDelivery
+        src_path: app
