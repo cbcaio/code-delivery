@@ -1,5 +1,4 @@
 ## Sistema de delivery com Laravel 5.1 + Ionic
-
 ###Capítulo 1: Criando a base do sistema
 
 1. Gerar APP_KEY caso não tiver sido gerada na instalação do laravel
