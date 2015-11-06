@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test', function () {
+
+    $repo = app()->make('CodeDelivery\Repositories\CategoryRepository');
+
+    return $repo->all();
+});
+
