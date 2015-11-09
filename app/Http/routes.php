@@ -15,10 +15,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth.checkrole', 'as' => 'admin.'], function(){
+    Route::group(['prefix' => 'categories', 'as' => 'categories.'], function(){
+        Route::get('/',['uses' => 'CategoriesController@index', 'as' => 'index']);
+        Route::get('/create', ['uses' => 'CategoriesController@create', 'as' => 'create']);
+        Route::post('/store', ['uses' => 'CategoriesController@store', 'as' => 'store']);
+        Route::get('/edit/{id}', ['uses' => 'CategoriesController@edit', 'as' => 'edit']);
+        Route::post('/update/{id}', ['uses' => 'CategoriesController@update', 'as' => 'update']);
+    });
 
-    $repo = app()->make('CodeDelivery\Repositories\CategoryRepository');
-
-    return $repo->all();
+    Route::group(['prefix' => 'products', 'as' => 'products.'], function(){
+        Route::get('/',['uses' => 'ProductsController@index', 'as' => 'index']);
+        Route::get('/create', ['uses' => 'ProductsController@create', 'as' => 'create']);
+        Route::post('/store', ['uses' => 'ProductsController@store', 'as' => 'store']);
+        Route::get('/edit/{id}', ['uses' => 'ProductsController@edit', 'as' => 'edit']);
+        Route::post('/update/{id}', ['uses' => 'ProductsController@update', 'as' => 'update']);
+        Route::get('/destroy/{id}', ['uses' => 'ProductsController@destroy', 'as' => 'destroy']);
+    });
 });
 

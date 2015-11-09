@@ -4,10 +4,13 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "prettus/l5-repository": "^2.1"
+        "prettus/l5-repository": "^2.1",
+        "bestmomo/scafold": "dev-master",
+        "illuminate/html": "^5.0@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

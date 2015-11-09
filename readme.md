@@ -1,4 +1,8 @@
 ## Sistema de delivery com Laravel 5.1 + Ionic
+
+Roteiro de atividades realizadas no curso Laravel 5.1 + Ionic da CodeEducation. 
+Criado para fixar meu aprendizado e servir como referências futuras.
+
 ###Capítulo 1: Criando a base do sistema
 
 1. Gerar APP_KEY caso não tiver sido gerada na instalação do laravel
@@ -49,11 +53,46 @@
 2. Criar Provider
   - Criar RepositoryServiceProvider (php artisan make:provider)
   - Fazer bind de todos os repositorios criados
-```php
-$this->aop->bind(
-	'CodeDelivery\Repositories\CategoryRepository',
-	'CodeDelivery\Repositories\CategoryRepositoryEloquent'
-);
-...
-```
+  ```php
+  /* dentro de register() */
+  $this->app->bind(
+  	'CodeDelivery\Repositories\CategoryRepository',
+  	'CodeDelivery\Repositories\CategoryRepositoryEloquent'
+  );
+  ```
 3. Adicionar repository criado a lista de providers (app.php)
+
+###Capítulo 3: Sistema Administrativo
+
+1. Instalar packages
+  - https://github.com/bestmomo/scafold
+    1. Adicionar ao composer.json
+    ```
+      "minimum-stability": "dev",
+    ```
+	2. composer require bestmomo/scafold
+	3. Adicionar o Bestmomo\Scafold\ScafoldServiceProvider::class a lista de service provider
+	4. php artisan vendor:publish
+  - https://github.com/illuminate/html
+	1. composer require illuminate/html
+	2. Adicionar o Illuminate\Html\HtmlServiceProvider::class a lista de service provider
+	3. Adicionar os Facades 
+	```php
+	  /* dentro de 'providers' em app.php */
+      'Html'      => Illuminate\Html\HtmlFacade::class,
+      'Form'      => Illuminate\Html\FormFacade::class,
+	```
+2. Controllers
+  - CategoryController
+  - ProductsController
+3. Views
+  - admin.categories
+  - admin.products
+4. Paginação
+5. Rotas nomeadas 
+6. Custom Requests
+  - AdminCategoryRequest
+  - AdminProductRequest
+7. Refatorando Forms (_form)
+8. Agrupando rotas
+9. Middleware CheckRole (admin criado nas seeds)
