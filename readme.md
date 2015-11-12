@@ -96,3 +96,25 @@ Criado para fixar meu aprendizado e servir como referências futuras.
 7. Refatorando Forms (_form)
 8. Agrupando rotas
 9. Middleware CheckRole (admin criado nas seeds)
+
+###Capítulo 4: Clientes
+
+1. ClientsController
+2. AdminClientRequest
+3. Rotas de admin.clients
+4. Views de clients
+5. CRUD Clients
+6. ClientService
+  - Recebe os repositorios de Cliente e de Usuário como parâmetros em seu construtor
+  - create e update, utilizado para criar um usuário automaticamente com uma senha padrão antes de executar o create e o update do repository
+  
+###Capítulo 5: Pedidos
+
+1. OrdersTableSeeder
+  - Colocar na ModelFactory Order e OrderItem
+2. OrdersController
+3. Criar views admin.orders.index e edit
+4. Relação de Order com Client
+  - OrderBelongsToClient
+5. Seed para deliveryman
+6. Função getDeliveryman no UserRepository para criar select de deliveryman

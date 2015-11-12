@@ -17,6 +17,11 @@ class Order extends Model implements Transformable
         'status'
     ];
 
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
     public function items()
     {
         return $this->hasMany(OrderItem::class);
@@ -24,7 +29,7 @@ class Order extends Model implements Transformable
 
     public function deliveryman()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_deliveryman_id','id');
     }
 
     public function products()
