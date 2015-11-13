@@ -118,3 +118,30 @@ Criado para fixar meu aprendizado e servir como referências futuras.
   - OrderBelongsToClient
 5. Seed para deliveryman
 6. Função getDeliveryman no UserRepository para criar select de deliveryman
+
+###Capítulo 6: Checkout
+
+1. php artisan make:repository Cupom
+2. php artisan make:migration create_cupoms_table --create=cupoms
+  - atenção: adicionar foreign key cupom_id na tabela orders e função down
+  ```php
+  Schema::table('orders',function(Blueprint $table) {
+		$table->dropForeign('orders_cupom_id_foreign');
+		$table->dropColumn('cupom_id');
+	});
+  ```
+3. Criar Seeder, Factory e adicionar fillables
+4. CupomsController
+5. Rotas e views para admin.cupoms
+6. Refatorar _form e fazer AdminCupomRequest
+7. CheckoutController com depencias de OrderRepository, UserRepository e ProductRepository
+8. Criação novas rotas e views a partir de 'customer' (no lugar de admin)
+9. Javascript para adicionar novos produtos na tela de pedidos 
+10. Criação do Service para as orders. Conceitos importantes: 
+  - \DB::beginTransaction()
+  - try/catch 
+  - \DB::commit (dentro do try)
+  - DB::rollback() (dentro to catch)	
+  - OrderService com dependencias de OrderRepository, CupomRepository e ProductRepository
+11. Rotas e funções para customer.index e customer.create
+12. Permissões de usuários (alteração no middleware checkrole)
