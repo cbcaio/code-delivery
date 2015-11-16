@@ -159,7 +159,8 @@ Criado para fixar meu aprendizado e servir como referências futuras.
   ```
 3. Authorization Server
   - https://github.com/lucadegasperi/oauth2-server-laravel/wiki/Choosing-a-Grant
-  - Escolhido: https://github.com/lucadegasperi/oauth2-server-laravel/wiki/Implementing-an-Authorization-Server-with-the-Password-Grant ```php
+  - Escolhido: https://github.com/lucadegasperi/oauth2-server-laravel/wiki/Implementing-an-Authorization-Server-with-the-Password-Grant 
+  ```php
   'password' => [
 		'class' => '\League\OAuth2\Server\Grant\PasswordGrant',
 		'callback' => '\CodeDelivery\OAuth2\PasswordVerifier@verify',
@@ -170,9 +171,4 @@ Criado para fixar meu aprendizado e servir como referências futuras.
 4. Refresh token
   - https://github.com/lucadegasperi/oauth2-server-laravel/wiki/Implementing-an-Authorization-Server-with-the-Refresh-Token-Grant
 5. Criando rotas para api
-  ```php
-  Route::group(['prefix' => 'api', 'middleware' => 'oauth' , 'as' => 'api.'], function() 
-  {
-     //
-  });
-  ```
+  - Route::group(['prefix' => 'api', 'middleware' => 'oauth' , 'as' => 'api.'], function(){ 	//  });
