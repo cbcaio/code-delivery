@@ -145,3 +145,34 @@ Criado para fixar meu aprendizado e servir como referências futuras.
   - OrderService com dependencias de OrderRepository, CupomRepository e ProductRepository
 11. Rotas e funções para customer.index e customer.create
 12. Permissões de usuários (alteração no middleware checkrole)
+
+###Capítulo 7: OAuth 2
+
+1. Instalando package https://github.com/lucadegasperi/oauth2-server-laravel/wiki
+2. Corrigir CSRF (middleware -> kernel.php)
+  - Configurar dentro do VerifyCsrfToken para ignorar as rotas da API
+  ```php
+   protected $except = [
+        'oauth/access_token',
+		'api/*'
+    ];
+  ```
+3. Authorization Server
+  - https://github.com/lucadegasperi/oauth2-server-laravel/wiki/Choosing-a-Grant
+  - Escolhido: https://github.com/lucadegasperi/oauth2-server-laravel/wiki/Implementing-an-Authorization-Server-with-the-Password-Grant ```php
+  'password' => [
+		'class' => '\League\OAuth2\Server\Grant\PasswordGrant',
+		'callback' => '\CodeDelivery\OAuth2\PasswordVerifier@verify',
+		'access_token_ttl' => 3600
+	]
+  ```
+  - Criar client se for testar requisição do token
+4. Refresh token
+  - https://github.com/lucadegasperi/oauth2-server-laravel/wiki/Implementing-an-Authorization-Server-with-the-Refresh-Token-Grant
+5. Criando rotas para api
+  ```php
+  Route::group(['prefix' => 'api', 'middleware' => 'oauth' , 'as' => 'api.'], function() 
+  {
+     //
+  });
+  ```
