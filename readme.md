@@ -172,3 +172,51 @@ Criado para fixar meu aprendizado e servir como referências futuras.
   - https://github.com/lucadegasperi/oauth2-server-laravel/wiki/Implementing-an-Authorization-Server-with-the-Refresh-Token-Grant
 5. Criando rotas para api
   - Route::group(['prefix' => 'api', 'middleware' => 'oauth' , 'as' => 'api.'], function(){ 	//  });
+  
+###Capítulo 8: Criando API de Cliente
+
+1. Separação das rotas para os diferentes papeis de consumidores da API (client e deliveryman no caso)
+  ```php
+  Route::group(['prefix' => 'api', 'middleware' => 'oauth' , 'as' => 'api.'], function() 
+  {
+      Route::group(['prefix' => 'client', 'as' => 'client.'], function() {
+      });
+  
+      Route::group(['prefix' => 'deliveryman', 'as' => 'deliveryman.'], function() {
+      });
+  });
+  ```
+2. Criando middleware oauth.checkrole
+  - Inserir no kernel em $routeMiddleware e aplicar nas rotas criadas anteriormente
+	```php
+	// CodeDelivery\Http\Middleware\OAuthCheckRole 
+	public function handle($request, Closure $next, $role)
+	{
+		$id = Authorizer::getResourceOwnerId();
+		$user = $this->userRepository->find($id);
+
+		if ($user->role != $role){
+			abort(403,'Acess Forbidden');
+		}
+
+		return $next($request);
+	}
+	```
+3. Iniciando RESTful Controller
+  - ClientCheckoutController
+  ```php
+  Route::resource('order', 
+  	'Api\Client\ClientCheckoutController',
+  	['except' => ['create','edit']]
+  );
+  ```
+4. Criando funcionalidades
+  - listagem de orders (index)
+  - cadastro de order (store)
+  - mostrar uma order (show)
+5. Atenção especial:
+  - nas funções da API a validação do usuário deve ser feita através do Authorizer
+  ```php
+  $id = Authorizer::getResourceOwnerId();
+        $clientId = $this->userRepository->find($id)->client->id;
+  ```
