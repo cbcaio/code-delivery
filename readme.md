@@ -1,38 +1,38 @@
 ## Sistema de delivery com Laravel 5.1 + Ionic
 
 Roteiro de atividades realizadas no curso Laravel 5.1 + Ionic da CodeEducation. 
-Criado para fixar meu aprendizado e servir como referências futuras.
+Criado para fixar meu aprendizado e servir como referÃªncias futuras.
 
-###Capítulo 1: Criando a base do sistema
+###CapÃ­tulo 1: Criando a base do sistema
 
-1. Gerar APP_KEY caso não tiver sido gerada na instalação do laravel
+1. Gerar APP_KEY caso nÃ£o tiver sido gerada na instalaÃ§Ã£o do laravel
   ```
     php artisan key:generate
   ```
-2. Definir variáveis no .env
-3. Mudar nome da aplicação 
+2. Definir variÃ¡veis no .env
+3. Mudar nome da aplicaÃ§Ã£o 
   ```
     php artisan app:name [namespace]
   ```
 4. Criar database
-5. Em relação aos Models:
+5. Em relaÃ§Ã£o aos Models:
   - Criada pasta app\Models 
-  - User transferi para nova paste e namespace corrigido (no config\auth.php também)
+  - User transferi para nova paste e namespace corrigido (no config\auth.php tambÃ©m)
   - Category, Product, Client, Order, OrderItem models criados
-6. Em relação às Migrations criadas:
+6. Em relaÃ§Ã£o Ã s Migrations criadas:
   - create_categories_table
   - create_products_table
   - create_clients_table
   - create_orders_table
   - create_order_items_table
-7. Em relação às Factories criadas:
+7. Em relaÃ§Ã£o Ã s Factories criadas:
   - Category
   - Product
   - Client
-8. Em relação aos Seeds:
+8. Em relaÃ§Ã£o aos Seeds:
   - UserTableSeeder (Client sendo criado junto)
   - CategoryTableSeeder
-  - ProductTableSeeder (não utilizado, ver CategoryTableSeeder)
+  - ProductTableSeeder (nÃ£o utilizado, ver CategoryTableSeeder)
 9. Relacionamentos:
   - Category hasMany Product
   - Product belongsTo Category
@@ -44,12 +44,12 @@ Criado para fixar meu aprendizado e servir como referências futuras.
   - OrderItem belongsTo Product
   - OrderItem belongsTo Order
   
-###Capítulo 2: Repositories (padrão de projeto)
+###CapÃ­tulo 2: Repositories (padrÃ£o de projeto)
 
 1. https://github.com/andersao/l5-repository
   - php artisan vendor:publish
   - Arrumar repository.php rootNamespace e models
-  - Recriar todos os models já criados no Cap1 utilizando o make:repository
+  - Recriar todos os models jÃ¡ criados no Cap1 utilizando o make:repository
 2. Criar Provider
   - Criar RepositoryServiceProvider (php artisan make:provider)
   - Fazer bind de todos os repositorios criados
@@ -62,7 +62,7 @@ Criado para fixar meu aprendizado e servir como referências futuras.
   ```
 3. Adicionar repository criado a lista de providers (app.php)
 
-###Capítulo 3: Sistema Administrativo
+###CapÃ­tulo 3: Sistema Administrativo
 
 1. Instalar packages
   - https://github.com/bestmomo/scafold
@@ -88,7 +88,7 @@ Criado para fixar meu aprendizado e servir como referências futuras.
 3. Views
   - admin.categories
   - admin.products
-4. Paginação
+4. PaginaÃ§Ã£o
 5. Rotas nomeadas 
 6. Custom Requests
   - AdminCategoryRequest
@@ -97,7 +97,7 @@ Criado para fixar meu aprendizado e servir como referências futuras.
 8. Agrupando rotas
 9. Middleware CheckRole (admin criado nas seeds)
 
-###Capítulo 4: Clientes
+###CapÃ­tulo 4: Clientes
 
 1. ClientsController
 2. AdminClientRequest
@@ -105,25 +105,25 @@ Criado para fixar meu aprendizado e servir como referências futuras.
 4. Views de clients
 5. CRUD Clients
 6. ClientService
-  - Recebe os repositorios de Cliente e de Usuário como parâmetros em seu construtor
-  - create e update, utilizado para criar um usuário automaticamente com uma senha padrão antes de executar o create e o update do repository
+  - Recebe os repositorios de Cliente e de UsuÃ¡rio como parÃ¢metros em seu construtor
+  - create e update, utilizado para criar um usuÃ¡rio automaticamente com uma senha padrÃ£o antes de executar o create e o update do repository
   
-###Capítulo 5: Pedidos
+###CapÃ­tulo 5: Pedidos
 
 1. OrdersTableSeeder
   - Colocar na ModelFactory Order e OrderItem
 2. OrdersController
 3. Criar views admin.orders.index e edit
-4. Relação de Order com Client
+4. RelaÃ§Ã£o de Order com Client
   - OrderBelongsToClient
 5. Seed para deliveryman
-6. Função getDeliveryman no UserRepository para criar select de deliveryman
+6. FunÃ§Ã£o getDeliveryman no UserRepository para criar select de deliveryman
 
-###Capítulo 6: Checkout
+###CapÃ­tulo 6: Checkout
 
 1. php artisan make:repository Cupom
 2. php artisan make:migration create_cupoms_table --create=cupoms
-  - atenção: adicionar foreign key cupom_id na tabela orders e função down
+  - atenÃ§Ã£o: adicionar foreign key cupom_id na tabela orders e funÃ§Ã£o down
   ```php
   Schema::table('orders',function(Blueprint $table) {
 		$table->dropForeign('orders_cupom_id_foreign');
@@ -135,18 +135,18 @@ Criado para fixar meu aprendizado e servir como referências futuras.
 5. Rotas e views para admin.cupoms
 6. Refatorar _form e fazer AdminCupomRequest
 7. CheckoutController com depencias de OrderRepository, UserRepository e ProductRepository
-8. Criação novas rotas e views a partir de 'customer' (no lugar de admin)
+8. CriaÃ§Ã£o novas rotas e views a partir de 'customer' (no lugar de admin)
 9. Javascript para adicionar novos produtos na tela de pedidos 
-10. Criação do Service para as orders. Conceitos importantes: 
+10. CriaÃ§Ã£o do Service para as orders. Conceitos importantes: 
   - \DB::beginTransaction()
   - try/catch 
   - \DB::commit (dentro do try)
   - DB::rollback() (dentro to catch)	
   - OrderService com dependencias de OrderRepository, CupomRepository e ProductRepository
-11. Rotas e funções para customer.index e customer.create
-12. Permissões de usuários (alteração no middleware checkrole)
+11. Rotas e funÃ§Ãµes para customer.index e customer.create
+12. PermissÃµes de usuÃ¡rios (alteraÃ§Ã£o no middleware checkrole)
 
-###Capítulo 7: OAuth 2
+###CapÃ­tulo 7: OAuth 2
 
 1. Instalando package https://github.com/lucadegasperi/oauth2-server-laravel/wiki
 2. Corrigir CSRF (middleware -> kernel.php)
@@ -167,21 +167,20 @@ Criado para fixar meu aprendizado e servir como referências futuras.
 		'access_token_ttl' => 3600
 	]
   ```
-  - Criar client se for testar requisição do token
+  - Criar client se for testar requisiÃ§Ã£o do token
 4. Refresh token
   - https://github.com/lucadegasperi/oauth2-server-laravel/wiki/Implementing-an-Authorization-Server-with-the-Refresh-Token-Grant
 5. Criando rotas para api
   - Route::group(['prefix' => 'api', 'middleware' => 'oauth' , 'as' => 'api.'], function(){ 	//  });
   
-###Capítulo 8: Criando API de Cliente
+###CapÃ­tulo 8: Criando API de Cliente
 
-1. Separação das rotas para os diferentes papeis de consumidores da API (client e deliveryman no caso)
+1. SeparaÃ§Ã£o das rotas para os diferentes papeis de consumidores da API (client e deliveryman no caso)
   ```php
   Route::group(['prefix' => 'api', 'middleware' => 'oauth' , 'as' => 'api.'], function() 
   {
       Route::group(['prefix' => 'client', 'as' => 'client.'], function() {
       });
-  
       Route::group(['prefix' => 'deliveryman', 'as' => 'deliveryman.'], function() {
       });
   });
@@ -198,13 +197,13 @@ Criado para fixar meu aprendizado e servir como referências futuras.
 		if ($user->role != $role){
 			abort(403,'Acess Forbidden');
 		}
-
 		return $next($request);
 	}
 	```
-3. Iniciando RESTful Controller
+3. Criando RESTful Controller e rotas
   - ClientCheckoutController
   ```php
+  //routes.php
   Route::resource('order', 
   	'Api\Client\ClientCheckoutController',
   	['except' => ['create','edit']]
@@ -214,9 +213,39 @@ Criado para fixar meu aprendizado e servir como referências futuras.
   - listagem de orders (index)
   - cadastro de order (store)
   - mostrar uma order (show)
-5. Atenção especial:
-  - nas funções da API a validação do usuário deve ser feita através do Authorizer
+5. AtenÃ§Ã£o especial:
+  - nas funÃ§Ãµes da API a validaÃ§Ã£o do usuÃ¡rio deve ser feita atravÃ©s do Authorizer
   ```php
   $id = Authorizer::getResourceOwnerId();
         $clientId = $this->userRepository->find($id)->client->id;
+  ```
+  
+###CapÃ­tulo 9: Criando API de Deliveryman
+
+1.Criando RESTful Controller e rotas
+ - DeliverymanCheckoutController
+```php
+// routes.php
+Route::resource('order',
+  'Api\Deliveryman\DeliverymanCheckoutController',
+  ['except' => ['create','edit','destroy','store']]
+);
+```
+2.Criando funcionalidades do DeliverymanCheckoutController
+  - listagem de orders (index)
+  - mostrar uma order (show)
+  - atualizar status da order (patch)
+    - AtenÃ§Ã£o: dados enviados atravÃ©s de form-data e x-www-form-urlencoded sÃ£o interpretados de maneira diferente pelo Request,no caso, utilizamos o x-www-form-urlencoded para que o parametro 'status' fosse lido e atualizado corretamente
+3. Nova funÃ§Ã£o adicionada no OrderService para atualizar o status
+   ```php
+   // OrderService.php
+  public function updateStatus(Request $request, $id) 
+  {
+      $idDeliveryman = Authorizer::getResourceOwnerId();
+      $order = $this->orderService->updateStatus($id,$idDeliveryman, $request->get('status'));
+      if ($order){
+          return $order;
+      }
+      abort(400,'Order nÃ£o encontrada'); 
+  }
   ```

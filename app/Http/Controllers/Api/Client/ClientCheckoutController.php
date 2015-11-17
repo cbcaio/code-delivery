@@ -4,7 +4,6 @@ namespace CodeDelivery\Http\Controllers\Api\Client;
 
 use CodeDelivery\Http\Controllers\Controller;
 use CodeDelivery\Repositories\OrderRepository;
-use CodeDelivery\Repositories\ProductRepository;
 use CodeDelivery\Repositories\UserRepository;
 use CodeDelivery\Services\OrderService;
 use Illuminate\Http\Request;
@@ -21,10 +20,6 @@ class ClientCheckoutController extends Controller
      */
     private $userRepository;
     /**
-     * @var ProductRepository
-     */
-    private $productRepository;
-    /**
      * @var OrderService
      */
     private $orderService;
@@ -32,13 +27,11 @@ class ClientCheckoutController extends Controller
     public function __construct(
         OrderRepository $orderRepository,
         UserRepository $userRepository,
-        ProductRepository $productRepository,
         OrderService $orderService
     )
     {
         $this->orderRepository = $orderRepository;
         $this->userRepository = $userRepository;
-        $this->productRepository = $productRepository;
         $this->orderService = $orderService;
     }
 
@@ -65,6 +58,11 @@ class ClientCheckoutController extends Controller
     public function show($id)
     {
         $order = $this->orderRepository->with(['client','items.product','cupom'])->find($id);
+        /* Método alternativo de fazer a mesma coisa (exibir os produtos)
+           $order->items->each(function($item){
+               $item->product;
+           });
+       */
         return $order;
     }
 }
