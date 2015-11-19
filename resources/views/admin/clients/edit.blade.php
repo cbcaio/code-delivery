@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-        <h3>Editando Usuário: {{ $client->user->name }}</h3>
+        <h3>Editando Cliente: {{ $client->user->name }}</h3>
 
         @include('errors._check')
 

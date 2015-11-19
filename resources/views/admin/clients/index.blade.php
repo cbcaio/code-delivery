@@ -3,10 +3,10 @@
 @section('content')
 
     <div class="container">
-        <h3>Categorias</h3>
+        <h3>Clientes</h3>
         <br>
         <a href="{{ route('admin.clients.create') }}" class="btn btn-default">
-            Novo  Categoria
+            Novo  Client
         </a>
         <br><br>
 

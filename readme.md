@@ -142,7 +142,7 @@ Criado para fixar meu aprendizado e servir como referências futuras.
   - try/catch 
   - \DB::commit (dentro do try)
   - DB::rollback() (dentro to catch)	
-  - OrderService com dependencias de OrderRepository, CupomRepository e ProductRepository
+  - OrderService com dependências de OrderRepository, CupomRepository e ProductRepository
 11. Rotas e funções para customer.index e customer.create
 12. Permissões de usuários (alteração no middleware checkrole)
 
@@ -317,3 +317,84 @@ Route::resource('order',
                   ->skipPresenter(false)
                   ->getByIdAndDeliveryman($id,$idDeliveryman);
   ```   
+  
+###Capítulo 11: Introdução ao Ionic
+
+1. Componentes
+  - Cordova: framework open-source de desenvolvimento mobile que permite utilizar tecnologias web ( HTML5, CSS3 e Javascript ) para criação de aplicações
+  multi-plataforma evitando linguagens nativas.
+  - AngularJS : framework javascript, foco no modelo, modelo semelhante ao MVC (MVVM),data-binding, suporte a single page application
+  - biblioteca ngRoute x Ui-router : ngRoute aceita apenas uma camada de roteamento enquanto o Ui-router é organizado por autômatos finitos
+  - NodeJs : biblioteca javascript que funciona no lado do servidor, base das aplicações front-end
+  - Bower : gerenciador de dependências para front-end
+  - SASS : baseado em Ruby, pré-processador CSS
+
+2. Instalando Ionic e Cordova
+  - Pré-requisitos:
+    - NodeJS ( https://nodejs.org/ )
+      npm é o gerenciador de pacotes do NodeJS
+    - Ionic ( http://ionicframework.com/docs/guide/installation.html )
+      - MAC : npm install -g cordova ionic
+      - Linux : ler Android notes pois é necessário instalar ia32-libs e configurar o java nas variáveis de ambiente antes de instalar o cordova e o ionic
+      - Windows :
+        1. Instalar JDK7 e configurar variáveis de ambiente corretamente (global)
+          - D:\Program Files\apache-ant-1.9.6\bin na PATH
+        2. Instalar Apache Ant e configurar variáveis de ambiente corretamente (global)
+          - JAVA_HOME ex: D:\Program Files\Java\jdk1.7.0_79
+          - %JAVA_HOME%\bin na PATH
+        3. Android JDK ( http://developer.android.com/sdk/index.html )
+          - instalar android sdk API 22 (Android 5.1.1)
+          - ANDROID_HOME ex: D:\Program Files (x86)\Android\android-sdk
+          - %ANDROID_HOME%\tools e %ANDROID_HOME%\platform-tools na PATH
+        4. 
+        ```
+         npm install -g cordova ionic
+        ```
+        
+3. Criando primeira aplicação (no caso, ionic é o nome da pasta que será criada)
+  ```
+    ionic start ionic blank
+  ```
+  - Estrutura de diretórios
+    - package.json : dependências do node, utiliza gulp como gerenciador de tarefas
+    - gulpfile.js : configuração das tarefas a serem executadas
+    - config.xml : arquivo de configuração do ionic de uso do cordova
+    - bower.json : as dependências da nossa aplicação
+    - bowerrc : arquivo de configuração do bower, aqui vamos definir o diretorio que serão instalados nossas dependências
+    - www : aqui fica nossa aplicação
+      - lib : análoga a pasta vendor (não modificar)
+    - scss : arquivo de configuração para mudar o template do ionic
+    - plugins : todos os plugins do cordova
+    - hooks : tarefas que podem ser definidas para o fluxo de trabalho
+
+4. Gerando builds
+  - Adicionar plataforma ( para ios é necessário estar utilizando mac )
+  
+    ```
+      $ ionic platform add ios
+      $ ionic platform add android
+    ```
+  - Gerar build
+  
+    ```
+      $ ionic build
+    ```
+5. Ionic ( http://ionicframework.com/docs/ )
+  - Formas de inserir conteúdo:
+    1. Diretivas javascript (ex: ion-header-bar, ion-content, ion-footer-bar)
+    2. HTML puro
+  - Classe importante has-subheader : previne que o conteúdo fique embaixo do subheader
+  - Ícones ( http://ionicons.com/ )
+    1. Adicionar a classe do ícone a tag desejada
+    2. Adicionar tag <i class="icon ion-etc"></i>
+  - Muito importante fuçar na documentação!
+  
+6. Simulação das plataformas
+  ```
+    ionic serve --labs
+  ```
+
+7. Emulação das plataformas
+  ```
+    ionic emulate "plataforma"
+  ```

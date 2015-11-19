@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+
+    <ion-pane>
+        <ion-header-bar class="bar-energized">
+            <button class="button button-clear icon ion-arrow-left-a"></button>
+                <h1 class="title">
+                    <i class="icon ion-alert"></i>
+                    Ionic Header
+                </h1>
+            <button class="button button-clear icon ion-navicon-round"></button>
+        </ion-header-bar>
+
+        <ion-header-bar class="bar-subheader bar-positive">
+            <h1 class="title title-right">Ionic Subheader</h1>
+        </ion-header-bar>
+
+        <ion-content class="padding has-subheader">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Accusantium blanditiis culpa distinctio dolor expedita illum impedit magni
+                modi natus quisquam quod ratione, sequi similique unde vel veniam voluptatem?
+                Inventore, laudantium!
+            </p>
+            <a href="javascript:void(0)" class="button button-dark button-block">button block</a>
+            <button class="button button-assertive button-small"> pequeno </button>
+            <button class="button button-balanced button-large button-outline"> grande </button>
+
+            <ion-list show-delete="true">
+                <ion-item>
+                    <ion-delete-button class="ion-minus-circled"></ion-delete-button>
+                    Hello!
+                </ion-item>
+                <ion-item>
+                    <ion-delete-button class="ion-minus-circled"></ion-delete-button>
+                    Hello 2!
+                </ion-item>
+
+            </ion-list>
+
+        </ion-content>
+
+        <ion-tabs class="tabs-royal tabs-icon-top">
+
+            <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+                <!-- Tab 1 content -->
+            </ion-tab>
+
+            <ion-tab title="About" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+                <!-- Tab 2 content -->
+            </ion-tab>
+
+            <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+                <!-- Tab 3 content -->
+            </ion-tab>
+
+        </ion-tabs>
+
+    </ion-pane>
+  </body>
+</html>
