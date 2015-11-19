@@ -11,7 +11,8 @@
         "prettus/l5-repository": "^2.1",
         "bestmomo/scafold": "dev-master",
         "illuminate/html": "^5.0@dev",
-        "lucadegasperi/oauth2-server-laravel": " 5.0.*"
+        "lucadegasperi/oauth2-server-laravel": " 5.0.*",
+        "league/fractal": "^0.13.0@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

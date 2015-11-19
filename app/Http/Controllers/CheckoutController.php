@@ -2,11 +2,11 @@
 
 namespace CodeDelivery\Http\Controllers;
 
+use CodeDelivery\Http\Requests\CheckoutRequest;
 use CodeDelivery\Repositories\OrderRepository;
 use CodeDelivery\Repositories\ProductRepository;
 use CodeDelivery\Repositories\UserRepository;
 use CodeDelivery\Services\OrderService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
@@ -57,7 +57,7 @@ class CheckoutController extends Controller
         return view('customer.order.create',compact('products'));
     }
 
-    public function store(Request $request)
+    public function store(CheckoutRequest $request)
     {
         $data = $request->all();
         $clientId = $this->userRepository->find(Auth::user()->id)->client->id;

@@ -249,3 +249,71 @@ Route::resource('order',
       abort(400,'Order não encontrada'); 
   }
   ```
+
+###Capítulo 10: Validações e Serializações
+
+1. Utilizar camada de validação (Requests) nos controllers da API 
+  - Inserir Accept = application/json no HEADER da requisição para definir se a requisição é ajax ou json
+2. CheckoutRequest criado
+    - Validação de cupoms
+    - Validação de items
+      - Função para criação de rules dos items
+      ```php
+      public function buildRulesItems($key, array &$rules)
+      {
+          $rules["items.$key.product_id"] = 'required';
+          $rules["items.$key.qtd"] = 'required';
+      }
+      ```
+    - Atenção: Utilizar 'Illuminate\Http\Request as HttpRequest' no parâmetro da função rules para evitar conflito 
+    com o Request que o CheckoutRequest herda
+3. Aplicar o mesmo CheckoutRequest para validar o CheckoutController também (store)
+4. Serializações
+  - Fractal  - PHPLeague (http://fractal.thephpleague.com/)
+  - https://github.com/andersao/l5-repository#presenters
+  - Para utilizar:
+    - Criar Transformer
+    ```php
+      php artisan make:transformer Order
+    ```
+    - Criar Presenter
+    ```php
+      php artisan make:presenter Order
+    ```
+    - Indicar no repositorio qual é o presenter usado
+    ```php
+    public function presenter()
+    {
+        return \CodeDelivery\Presenters\OrderPresenter::class;
+    }
+    ```
+    - Não esquecer do 'use TransformableTrait;'
+    - Atenção: para ignorar o presenter e continuar retornando o objeto Eloquent nas consultas deve-se utilizar
+    o skipPresenter(). Ex:
+    ```php
+     $order = $this->orderRepository->skipPresenter()->with(['client','items.product','cupom'])->find($id);
+    ```
+5. Serialização de relacionamentos
+  - protected $defaultIncludes = [''];  Includes que serão automaticamente adicionados
+    - Criar funções include juntamente com o transformer do model relacionado. Ex:
+    ```php
+    public function includeCupom(Order $model)
+    {
+        if (!$model->cupom)
+            return null;
+        return $this->item($model->cupom, new CupomTransformer());
+    }
+    ```
+  - protected $availablesIncludes = []; Includes que serão adicionados caso houver requisição
+    - Enviar 'include'  no parâmetro da url da requisição com nomes dos includes que quiser adicionar (separados por virgula, sem espaços)
+6. Escapando o presenter por padrão (para continuar resgatando o Eloquent normalmente)
+  - Para isso é necessário ativar o skipPresenter como padrão no repositório desejado
+  ```php
+      protected $skipPresenter = true;
+  ```
+  - Explicitar o presenter nos controllers criados ClientCheckout e DeliverymanCheckout. Ex:
+  ```php
+      return $this->orderRepository
+                  ->skipPresenter(false)
+                  ->getByIdAndDeliveryman($id,$idDeliveryman);
+  ```   
