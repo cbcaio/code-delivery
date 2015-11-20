@@ -12,7 +12,8 @@
         "bestmomo/scafold": "dev-master",
         "illuminate/html": "^5.0@dev",
         "lucadegasperi/oauth2-server-laravel": " 5.0.*",
-        "league/fractal": "^0.13.0@dev"
+        "league/fractal": "^0.13.0@dev",
+        "barryvdh/laravel-cors": "0.7.x"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

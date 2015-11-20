@@ -484,3 +484,118 @@ Route::resource('order',
       Titulo da página que irá aparecer no ion-nav-bar
     </ion-nav-title>
   ```
+  
+###Capítulo 13: Autenticação e CORS
+
+1. OAuth2 com angular ( https://github.com/seegno/angular-oauth2 )
+  - Esta biblioteca utiliza o pacote angular-cookies para gerenciar os tokens
+  - A bilbioteca query-string serve para ajudar na formação de urls com GET
+  - É obrigatório o uso de HTTPS para manter a segurança, pois o token vai no HEADER da requisição e este deve ser criptografado
+
+2. Instalação da biblioteca
+  1. Bower : (lembrar do --save para adicionar a dependencia ao bower.json)
+  ```
+    bower install angular-oauth2 --save 
+  ```
+  2. Se aparecer alguma pergunta sobre qual versão instalar, dar preferência àquela que é requerida pelo ionic
+  3. Fazer includes no index.html ( a ordem é importante, angular-cookier e query-string precisam vir antes do angular-oauth2)
+  ```
+    <script src="lib/angular-cookies/angular-cookies.min.js"></script>
+    <script src="lib/query-string/query-string.min.js"></script>
+    <script src="lib/angular-oauth2/dist/angular-oauth2.min.js"></script>
+  ```
+  4. Importar o modulo 'angular-oauth2' no app.js
+  5. Se a aplicação abrir e não apresentar erros no browser a instalação foi concluída com sucesso
+
+3. Configurações
+  1. Chamar o OAuthProvider para iniciarmos as configurações ( arquivo app.js )
+     - É este provider que irá gerar o serviço de OAuth e definir suas configurações
+    ```
+    .config(function($stateProvider, $urlRouterProvider, OAuthProvider){
+      OAuthProvider.configure({
+          baseUrl: 'http://localhost:8000',
+          clientId: 'appid01',
+          clientSecret: 'secret' // optional,
+          grantPath: '/oauth/access_token'
+      });
+      ...
+    ```
+  2. Chamar o OAuthTokenProvider da mesma maneira
+    - O OAuthTokenProvider vai gerar o serviço OAuthProvider que vai armazenar o token de acesso nos cookies, o refresh token,
+    o nome do cookie, etc
+    ```
+      OAuthTokenProvider.configure({
+        name: 'token',    /* nome do cookie que será criado */
+        options: {        /* opções com relação ao cookie que será criado, como tempo de vida, etc */
+          secure : false   /* para usar https */ 
+          }
+      });
+    ```
+4. Rota e template de login
+  1. As rotas do capítulo anterior foram deletadas e uma nova rota para login foi criada, assim como um LoginCtrl
+    - templates/login.html
+    - js/controllers/login.js
+  2. Criação do formulário no login.html
+  3. Criação da função login no controller js/login.js
+  
+    ```
+      .controller('LoginCtrl',['$scope', 'OAuth', function($scope, OAuth){ // método explícito 
+            // Certifica que o user está vazio
+            $scope.user = {
+                username: '',
+                password: ''
+            };
+            $scope.login = function (){
+                OAuth.getAccessToken($scope.user)
+                    .then( function(data){
+                        console.log('login funcionando');
+                    }, function(responseError) {
+                    });
+            };
+        }]);
+    ```
+
+5. CORS ( Cross Origin Resource Sharing )
+  - Existe uma configuração que dita o que e a quem será compartilhado informações do servidor, essa configuração é chamada CORS
+    - http://www.w3.org/TR/2010/WD-cors-20100727/
+  - No caso, instalaremos o pacote https://github.com/barryvdh/laravel-cors para utilizar o cors com o laravel
+    - Utilizaremos o cors como um middleware e este será aplicado apenas às rotas da api e do token
+    - Para realizar alterações nas configurações é preciso publicar as configurações do pacote, será gerado o arquivo config/cors.php 
+    ```
+      php artisan vendor:publish --provider="Barryvdh\Cors\ServiceProvider"
+    ```
+  - Ao aplicar o middleware, a requisição do app mobile para nosso servidor será aceita e o token será gerado. Para acessar o valor do
+  token gravado no cookie, existe o serviço '$cookies'
+  ```
+    angular.module('starter.controllers',[])
+    .controller('LoginCtrl',['$scope', 'OAuth', '$cookies', function($scope, OAuth, $cookies){
+            $scope.login = function (){
+                OAuth.getAccessToken($scope.user)
+                    .then( function(data){
+                        console.log(data);
+                        console.log($cookies.getObject('token')); // 'token' definido no OAuthTokenProvider
+                    }, function(responseError) {
+                        console.debug(responseError);
+                    });
+            };
+    }]);
+  ```
+
+6. Ajustando login e redirecionamentos
+  - Adicionar required="required" aos inputs do form
+  - Incluir serviço $ionicPopup no controller para exibir popup quando falhar o login
+  - Criar home e redirecionar login para a rota criada utilizando o service $state 
+  ```
+  $scope.login = function (){
+    OAuth.getAccessToken($scope.user)
+        .then( function(data){
+            $state.go('home');
+        }, function(responseError) {
+            $ionicPopup.alert({
+                title: 'Advertência',
+                template: 'Login e/ou senha inválidos'
+            })
+            console.debug(responseError);
+        });
+  };
+  ```
