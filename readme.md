@@ -398,3 +398,89 @@ Route::resource('order',
   ```
     ionic emulate "plataforma"
   ```
+  
+###Capítulo 12: Iniciando com Rotas e Navegação (ui-router)
+
+1. ui-router , não será utilizado o ngRoute do angular ( https://github.com/angular-ui/ui-router )
+  - Os Provedores criam serviços que precisamos usar na aplicação, então quando precisamos fazer uma configuração inicial nesses 
+  serviços temos que ir no provider, para isso utilizamos o seguinte código no arquivo www/js/app.js
+  ```
+    .config(function($stateProvider){
+        $stateProvider.state('home',{
+            url: '/home',
+            templateUrl: 'templates/home.html'
+        })
+    });
+  ```
+  - Para definir outros estados basta concatenar outro .state() com os paramêtros desejados
+  - Criar www/templates para armazenar nossas views
+  - Para separar o conteúdo das views e do index.html utilizamos o seguinte código nos templates: (não renderizar uma coisa emcima da outra)
+  ```
+    <ion-view>
+        <ion-content class="padding">
+            Minha home
+        </ion-content>
+    </ion-view>
+  ```
+
+2. Navegação entre rotas
+  - Primeira maneira: <a href="#/"> Ir </a> (não recomendado)
+  - Segunda maneira: Diretiva angular ng-href <a ng-href="#/"> Ir </a>
+  - Terceira maneira: Trabalhar com estado ui-sref <a ui-sref="home"> Ir </a> (melhor opção)
+    - Para passar valores aos parâmetros diretamente
+      ```
+        ui-sref="home.b({a: 'fooVal', b: 'barVal'})"
+      ```
+ 
+3. Estados filhos (subrotas)
+   - Para criar um estado filho basta apenas criar outro estado e concatenar com . o nome do estado pai com o do filho
+   ```
+     .state('home.a',{
+         url: '/a',
+         templateUrl: 'templates/home-a.html',
+         controller: 'HomeController'
+     })
+   ```
+   - Inserir <ion-nav-view></ion-nav-view> na view do pai no local que se deseja exibir o estado filho
+
+4. Redirecionamento padrão
+  - Utilizar o provider do ngRoute ( $urlRouterProvider ) nas nossas configurações e definir a seguinte configuração
+  ```
+  .config(function($stateProvider, $urlRouterProvider){
+      $urlRouterProvider.otherwise('/');
+      ...
+  ```
+
+5. $state e %stateParams
+  - Parâmetro de rota: basta adicionar :nomedoparametro a url das rotas
+  - $stateParams é um serviço utilizado para pegar os parâmetros de rotas
+  - $state é um serviço que serve para gerenciar o redirecionamento para outros estados via js e também para pegar informações 
+  do estado atual
+  
+6. Controllers
+  - Definir o nome do 'controller' dentro do .state() ou definir a função diretamente
+  - Para criar um controller é preciso criar um angular.module (neste momento foi criado a pasta js/controllers para organizar os controllers)
+  ```
+    angular.module('starter.controllers',[])
+        .controller('HomeController',
+        function($scope, $state, $stateParams){
+            $scope.state = $state.current;
+            $scope.nome = $stateParams.nome;
+        });
+  ```
+  - Depois de criado, basta importar o js no index.html e adicioná-lo no array de modulos do app.js
+  ```
+    index.html
+      <script src="js/controllers/home.js"></script>
+    ...
+    app.js
+      angular.module('starter', ['ionic', 'starter.controllers'])
+    ...
+  ```
+
+7. Título das páginas
+  ```
+    <ion-nav-title>
+      Titulo da página que irá aparecer no ion-nav-bar
+    </ion-nav-title>
+  ```

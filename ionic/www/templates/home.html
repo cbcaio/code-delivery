@@ -1,0 +1,21 @@
+<ion-view>
+    <ion-nav-title>
+        Home
+    </ion-nav-title>
+    <ion-content class="padding">
+        Minha home
+        <br>
+        stateParams: {{ params }}
+        <br>
+        state: {{ state.name }}
+        <br>
+        <a ui-sref="main" class="button button-assertive"> Ir Main</a>
+        <br><br>
+        <a ui-sref="home.a" class="button button-assertive"> Ir Home A</a>
+        <br><br>
+        <a ui-sref="home.b({a: 'fooVal', b: 'barVal'})" class="button button-assertive"> Ir Home B</a>
+
+
+        <ion-nav-view></ion-nav-view>
+    </ion-content>
+</ion-view>
