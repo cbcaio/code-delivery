@@ -2,7 +2,6 @@
 
 namespace CodeDelivery\Http\Controllers\Auth;
 
-use CodeDelivery\User;
 use Validator;
 use CodeDelivery\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;

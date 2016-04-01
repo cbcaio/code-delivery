@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
 Route::group(['middleware' => 'cors'], function() {
 
     Route::post('oauth/access_token', function() {
@@ -105,8 +94,3 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.','middleware' => 'auth.
     Route::get('order/create', ['as' => 'order.create', 'uses' => 'CheckoutController@create']);
     Route::post('order/store', ['as' => 'order.store', 'uses' => 'CheckoutController@store']);
 });
-
-
-
-
-
