@@ -7,8 +7,15 @@ Route::post('oauth/access_token', function ()
 
 Route::group(['prefix' => 'api', 'middleware' => 'oauth', 'as' => 'api.'], function ()
 {
-    Route::get('pedidos', function ()
+    Route::get('/pedidos', function ()
     {
         return ['etc' => 1231];
     });
+
+    Route::get('/teste', function ()
+    {
+        return ['teste' => 123456];
+    });
+
+
 });
