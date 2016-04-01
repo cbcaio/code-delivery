@@ -4,7 +4,6 @@ namespace CodeDelivery\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use CodeDelivery\Repositories\UserRepository;
 use CodeDelivery\Models\User;
 
 /**
@@ -34,5 +33,15 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    /**
+     * Reset Query Scope
+     *
+     * @return $this
+     */
+    public function resetScope()
+    {
+        // TODO: Implement resetScope() method.
     }
 }

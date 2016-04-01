@@ -20,14 +20,15 @@ class ClientsController extends Controller
 
     public function __construct(ClientRepository $repository, ClientService $clientService)
     {
-        $this->repository = $repository;
+        $this->repository    = $repository;
         $this->clientService = $clientService;
     }
 
     public function index()
     {
         $clients = $this->repository->paginate();
-        return view('admin.clients.index',compact('clients'));
+
+        return view('admin.clients.index', compact('clients'));
     }
 
     public function create()
@@ -46,13 +47,15 @@ class ClientsController extends Controller
     public function edit($id)
     {
         $client = $this->repository->find($id);
+
         return view('admin.clients.edit', compact('client'));
     }
 
     public function update(AdminClientRequest $request, $id)
     {
         $data = $request->all();
-        $this->clientService->update($data,$id);
+        $this->clientService->update($data, $id);
+
         return redirect()->route('admin.clients.index');
     }
 }

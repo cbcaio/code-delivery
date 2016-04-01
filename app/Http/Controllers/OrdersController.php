@@ -20,22 +20,25 @@ class OrdersController extends Controller
     public function index()
     {
         $orders = $this->repository->paginate();
+
         return view('admin.orders.index', compact('orders'));
     }
 
-    public function edit($id,UserRepository $userRepository)
+    public function edit($id, UserRepository $userRepository)
     {
         $list_status = [0 => 'Pendente', 1 => 'A caminho', 2 => 'Entregue', 3 => 'Cancelado'];
-        $order = $this->repository->find($id);
+        $order       = $this->repository->find($id);
 
         $deliveryman = $userRepository->getDeliveryman();
-        return view('admin.orders.edit',compact('order','list_status','deliveryman'));
+
+        return view('admin.orders.edit', compact('order', 'list_status', 'deliveryman'));
     }
 
     public function update(Request $request, $id)
     {
         $all = $request->all();
-        $this->repository->update($all,$id);
+        $this->repository->update($all, $id);
+
         return redirect()->route('admin.orders.index');
     }
 }

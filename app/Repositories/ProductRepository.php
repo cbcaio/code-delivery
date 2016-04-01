@@ -10,5 +10,4 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface ProductRepository extends RepositoryInterface
 {
-    //
 }

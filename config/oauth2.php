@@ -27,19 +27,18 @@ return [
     |
     */
 
-    'grant_types' => [
-        'password' => [
-            'class' => '\League\OAuth2\Server\Grant\PasswordGrant',
-            'callback' => '\CodeDelivery\OAuth2\PasswordVerifier@verify',
+    'grant_types'             => [
+        'password'      => [
+            'class'            => '\League\OAuth2\Server\Grant\PasswordGrant',
+            'callback'         => '\CodeDelivery\OAuth2\PasswordVerifier@verify',
             'access_token_ttl' => 3600
         ],
         'refresh_token' => [
-            'class' => '\League\OAuth2\Server\Grant\RefreshTokenGrant',
-            'access_token_ttl' => 3600,
+            'class'             => '\League\OAuth2\Server\Grant\RefreshTokenGrant',
+            'access_token_ttl'  => 3600,
             'refresh_token_ttl' => 36000
         ]
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Output Token Type
@@ -52,8 +51,7 @@ return [
     |
     */
 
-    'token_type' => 'League\OAuth2\Server\TokenType\Bearer',
-
+    'token_type'              => 'League\OAuth2\Server\TokenType\Bearer',
     /*
     |--------------------------------------------------------------------------
     | State Parameter
@@ -63,8 +61,7 @@ return [
     |
     */
 
-    'state_param' => false,
-
+    'state_param'             => FALSE,
     /*
     |--------------------------------------------------------------------------
     | Scope Parameter
@@ -74,8 +71,7 @@ return [
     |
     */
 
-    'scope_param' => false,
-
+    'scope_param'             => FALSE,
     /*
     |--------------------------------------------------------------------------
     | Scope Delimiter
@@ -85,8 +81,7 @@ return [
     |
     */
 
-    'scope_delimiter' => ',',
-
+    'scope_delimiter'         => ',',
     /*
     |--------------------------------------------------------------------------
     | Default Scope
@@ -96,8 +91,7 @@ return [
     |
     */
 
-    'default_scope' => null,
-
+    'default_scope'           => NULL,
     /*
     |--------------------------------------------------------------------------
     | Access Token TTL
@@ -108,8 +102,7 @@ return [
     |
     */
 
-    'access_token_ttl' => 3600,
-
+    'access_token_ttl'        => 3600,
     /*
     |--------------------------------------------------------------------------
     | Limit clients to specific grants
@@ -120,8 +113,7 @@ return [
     |
     */
 
-    'limit_clients_to_grants' => false,
-
+    'limit_clients_to_grants' => FALSE,
     /*
     |--------------------------------------------------------------------------
     | Limit clients to specific scopes
@@ -132,8 +124,7 @@ return [
     |
     */
 
-    'limit_clients_to_scopes' => false,
-
+    'limit_clients_to_scopes' => FALSE,
     /*
     |--------------------------------------------------------------------------
     | Limit scopes to specific grants
@@ -144,8 +135,7 @@ return [
     |
     */
 
-    'limit_scopes_to_grants' => false,
-
+    'limit_scopes_to_grants'  => FALSE,
     /*
     |--------------------------------------------------------------------------
     | HTTP Header Only
@@ -156,6 +146,6 @@ return [
     |
     */
 
-    'http_headers_only' => false,
+    'http_headers_only'       => FALSE,
 
 ];

@@ -2,6 +2,7 @@
 
 namespace CodeDelivery\Repositories;
 
+use Prettus\Repository\Contracts\RepositoryInterface;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use CodeDelivery\Repositories\OrderRepository;
@@ -29,5 +30,15 @@ class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    /**
+     * Reset Query Scope
+     *
+     * @return $this
+     */
+    public function resetScope()
+    {
+        // TODO: Implement resetScope() method.
     }
 }
