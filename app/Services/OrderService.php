@@ -26,22 +26,22 @@ class OrderService
         OrderRepository $orderRepository,
         CupomRepository $cupomRepository,
         ProductRepository $productRepository
-    )
-    {
+    ) {
 
-        $this->orderRepository = $orderRepository;
-        $this->cupomRepository = $cupomRepository;
+        $this->orderRepository   = $orderRepository;
+        $this->cupomRepository   = $cupomRepository;
         $this->productRepository = $productRepository;
     }
 
-    public function create(array $data){
+    public function create(array $data)
+    {
         \DB::beginTransaction();
-        try{
+        try {
             $data['status'] = 0;
-            if (isset($data['cupom_code'])){
-                $cupom = $this->cupomRepository->findByField('code',$data['cupom_code'])->first();
+            if (isset($data['cupom_code'])) {
+                $cupom         = $this->cupomRepository->findByField('code', $data['cupom_code'])->first();
                 $data['cupom'] = $cupom->id;
-                $cupom->used = 1;
+                $cupom->used   = 1;
                 $cupom->save();
                 unset($data['cupom_code']);
             }
@@ -52,7 +52,7 @@ class OrderService
             $order = $this->orderRepository->create($data);
             $total = 0;
 
-            foreach ($items as $item){
+            foreach ($items as $item) {
                 $item['price'] = $this->productRepository->find($item['product_id'])->price;
                 $order->items()->create($item);
                 $total += $item['price'] * $item['qtd'];
@@ -64,8 +64,8 @@ class OrderService
             }
             $order->save();
             \DB::commit();
-
-        }catch(\Exception $e){
+            return $order;
+        } catch (\Exception $e) {
             \DB::rollback();
             throw $e;
         }
