@@ -2,9 +2,9 @@
 
 namespace CodeDelivery\Http\Controllers;
 
-use CodeDelivery\Repositories\OrderRepository;
-use CodeDelivery\Repositories\ProductRepository;
-use CodeDelivery\Repositories\UserRepository;
+use CodeDelivery\Repositories\Contracts\OrderRepository;
+use CodeDelivery\Repositories\Contracts\ProductRepository;
+use CodeDelivery\Repositories\Contracts\UserRepository;
 use CodeDelivery\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

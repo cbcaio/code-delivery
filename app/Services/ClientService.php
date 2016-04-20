@@ -1,9 +1,8 @@
 <?php
 namespace CodeDelivery\Services;
 
-
-use CodeDelivery\Repositories\ClientRepository;
-use CodeDelivery\Repositories\UserRepository;
+use CodeDelivery\Repositories\Contracts\ClientRepository;
+use CodeDelivery\Repositories\Contracts\UserRepository;
 
 class ClientService
 {

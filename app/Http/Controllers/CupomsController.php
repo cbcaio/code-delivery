@@ -4,7 +4,7 @@ namespace CodeDelivery\Http\Controllers;
 
 use CodeDelivery\Http\Requests;
 use CodeDelivery\Http\Requests\AdminCupomRequest;
-use CodeDelivery\Repositories\CupomRepository;
+use CodeDelivery\Repositories\Contracts\CupomRepository;
 
 class CupomsController extends Controller
 {

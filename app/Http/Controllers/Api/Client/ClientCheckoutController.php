@@ -3,12 +3,10 @@
 namespace CodeDelivery\Http\Controllers\Api\Client;
 
 use CodeDelivery\Http\Controllers\Controller;
-use CodeDelivery\Repositories\OrderRepository;
-use CodeDelivery\Repositories\ProductRepository;
-use CodeDelivery\Repositories\UserRepository;
+use CodeDelivery\Repositories\Contracts\OrderRepository;
+use CodeDelivery\Repositories\Contracts\UserRepository;
 use CodeDelivery\Services\OrderService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 
 class ClientCheckoutController extends Controller
@@ -22,10 +20,6 @@ class ClientCheckoutController extends Controller
      */
     private $userRepository;
     /**
-     * @var ProductRepository
-     */
-    private $productRepository;
-    /**
      * @var OrderService
      */
     private $orderService;
@@ -33,15 +27,16 @@ class ClientCheckoutController extends Controller
     public function __construct(
         OrderRepository $orderRepository,
         OrderService $orderService,
-        UserRepository $userRepository,
-        ProductRepository $productRepository
+        UserRepository $userRepository
     ) {
-        $this->orderRepository   = $orderRepository;
-        $this->orderService      = $orderService;
-        $this->userRepository    = $userRepository;
-        $this->productRepository = $productRepository;
+        $this->orderRepository = $orderRepository;
+        $this->orderService    = $orderService;
+        $this->userRepository  = $userRepository;
     }
 
+    /**
+     * @return mixed
+     */
     public function index()
     {
         $authenticated_id = Authorizer::getResourceOwnerId();
@@ -53,6 +48,11 @@ class ClientCheckoutController extends Controller
         return $orders;
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
     public function store(Request $request)
     {
         $authenticated_id             = Authorizer::getResourceOwnerId();
@@ -65,6 +65,10 @@ class ClientCheckoutController extends Controller
         return $creater_order_with_relations;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function show($id)
     {
         $order = $this->orderRepository->with(['client', 'items.product', 'cupom'])->find($id);

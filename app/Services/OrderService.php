@@ -2,9 +2,10 @@
 namespace CodeDelivery\Services;
 
 
-use CodeDelivery\Repositories\CupomRepository;
-use CodeDelivery\Repositories\OrderRepository;
-use CodeDelivery\Repositories\ProductRepository;
+use CodeDelivery\Models\Order;
+use CodeDelivery\Repositories\Contracts\CupomRepository;
+use CodeDelivery\Repositories\Contracts\OrderRepository;
+use CodeDelivery\Repositories\Contracts\ProductRepository;
 
 class OrderService
 {
@@ -33,6 +34,11 @@ class OrderService
         $this->productRepository = $productRepository;
     }
 
+    /**
+     * @param array $data
+     * @return mixed
+     * @throws \Exception
+     */
     public function create(array $data)
     {
         \DB::beginTransaction();
@@ -64,10 +70,30 @@ class OrderService
             }
             $order->save();
             \DB::commit();
+
             return $order;
         } catch (\Exception $e) {
             \DB::rollback();
             throw $e;
         }
+    }
+
+    /**
+     * @param $order_id
+     * @param $idDeliveryman
+     * @param $status
+     * @return bool|Order
+     */
+    public function updateStatus($order_id, $idDeliveryman, $status)
+    {
+        $order = $this->orderRepository->getByIdAndDeliveryman($order_id, $idDeliveryman);
+        if ($order instanceof Order) {
+            $order->status = $status;
+            $order->save();
+
+            return $order;
+        }
+
+        return false;
     }
 }

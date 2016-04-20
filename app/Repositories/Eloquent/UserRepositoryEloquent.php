@@ -1,18 +1,17 @@
 <?php
 
-namespace CodeDelivery\Repositories;
+namespace CodeDelivery\Repositories\Eloquent;
 
-use Prettus\Repository\Contracts\RepositoryInterface;
+use CodeDelivery\Repositories\Contracts\UserRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use CodeDelivery\Repositories\OrderRepository;
-use CodeDelivery\Models\Order;
+use CodeDelivery\Models\User;
 
 /**
- * Class OrderRepositoryEloquent
+ * Class UserRepositoryEloquent
  * @package namespace CodeDelivery\Repositories;
  */
-class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
+class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
     /**
      * Specify Model class name
@@ -21,7 +20,12 @@ class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
      */
     public function model()
     {
-        return Order::class;
+        return User::class;
+    }
+
+    public function getDeliveryman()
+    {
+        return $this->model->where(['role' => 'deliveryman'])->lists('name','id');
     }
 
     /**

@@ -3,8 +3,8 @@
 namespace CodeDelivery\Http\Controllers;
 
 use CodeDelivery\Http\Requests\AdminProductRequest;
-use CodeDelivery\Repositories\CategoryRepository;
-use CodeDelivery\Repositories\ProductRepository;
+use CodeDelivery\Repositories\Contracts\CategoryRepository;
+use CodeDelivery\Repositories\Contracts\ProductRepository;
 
 class ProductsController extends Controller
 {

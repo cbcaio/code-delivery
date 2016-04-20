@@ -4,7 +4,7 @@ namespace CodeDelivery\Http\Controllers;
 
 use CodeDelivery\Http\Requests;
 use CodeDelivery\Http\Requests\AdminClientRequest;
-use CodeDelivery\Repositories\ClientRepository;
+use CodeDelivery\Repositories\Contracts\ClientRepository;
 use CodeDelivery\Services\ClientService;
 
 class ClientsController extends Controller

@@ -3,7 +3,7 @@
 namespace CodeDelivery\Http\Middleware;
 
 use Closure;
-use CodeDelivery\Repositories\UserRepository;
+use CodeDelivery\Repositories\Contracts\UserRepository;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 
 class OAuthCheckRole

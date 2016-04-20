@@ -1,18 +1,17 @@
 <?php
 
-namespace CodeDelivery\Repositories;
+namespace CodeDelivery\Repositories\Eloquent;
 
-use Prettus\Repository\Contracts\RepositoryInterface;
+use CodeDelivery\Repositories\Contracts\ClientRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use CodeDelivery\Repositories\CupomRepository;
-use CodeDelivery\Models\Cupom;
+use CodeDelivery\Models\Client;
 
 /**
- * Class CupomRepositoryEloquent
+ * Class ClientRepositoryEloquent
  * @package namespace CodeDelivery\Repositories;
  */
-class CupomRepositoryEloquent extends BaseRepository implements CupomRepository
+class ClientRepositoryEloquent extends BaseRepository implements ClientRepository
 {
     /**
      * Specify Model class name
@@ -21,7 +20,7 @@ class CupomRepositoryEloquent extends BaseRepository implements CupomRepository
      */
     public function model()
     {
-        return Cupom::class;
+        return Client::class;
     }
 
     /**

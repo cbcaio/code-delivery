@@ -1,8 +1,8 @@
 <?php
 namespace CodeDelivery\Http\Controllers;
 
-use CodeDelivery\Repositories\OrderRepository;
-use CodeDelivery\Repositories\UserRepository;
+use CodeDelivery\Repositories\Contracts\OrderRepository;
+use CodeDelivery\Repositories\Contracts\UserRepository;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller

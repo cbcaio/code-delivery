@@ -9,7 +9,7 @@ Route::group([
     'middleware' => 'oauth',
 ], function () {
 
-    Route::get('authenticated', function (\CodeDelivery\Repositories\UserRepository $userRepository) {
+    Route::get('authenticated', function (\CodeDelivery\Repositories\Contracts\UserRepository $userRepository) {
         $authenticated_id = Authorizer::getResourceOwnerId();
 
         return $userRepository->find($authenticated_id);
@@ -27,14 +27,19 @@ Route::group([
     Route::group([
         'prefix'     => 'deliveryman',
         'middleware' => 'oauth.checkrole:deliveryman',
-        'as'         => 'deliveryman.'
     ], function () {
 
-        Route::get('pedidos', function () {
-            return [
-                'deliveryman' => 1231
-            ];
-        });
+        Route::resource('order', 'Api\Deliveryman\DeliverymanCheckoutController', [
+            'only' => [
+                'index',
+                'show'
+            ]
+        ]);
+
+        Route::patch('order/{order_id}/update-status', [
+            'uses' => 'Api\Deliveryman\DeliverymanCheckoutController@updateStatus',
+            'as'   => 'api.deliveryman.order.update-status'
+        ]);
 
     });
 });

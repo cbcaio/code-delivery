@@ -1,14 +1,14 @@
 <?php
 
-namespace CodeDelivery\Repositories;
+namespace CodeDelivery\Repositories\Contracts;
 
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Interface OrderRepository
+ * Interface CupomRepository
  * @package namespace CodeDelivery\Repositories;
  */
-interface OrderRepository extends RepositoryInterface
+interface CupomRepository extends RepositoryInterface
 {
     //
 }

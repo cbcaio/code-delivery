@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeDelivery\Repositories;
+namespace CodeDelivery\Repositories\Contracts;
 
 use Prettus\Repository\Contracts\RepositoryInterface;
 

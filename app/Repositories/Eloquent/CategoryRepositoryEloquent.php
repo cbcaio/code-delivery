@@ -1,19 +1,19 @@
 <?php
 
-namespace CodeDelivery\Repositories;
+namespace CodeDelivery\Repositories\Eloquent;
 
-use Prettus\Repository\Contracts\RepositoryInterface;
+use CodeDelivery\Repositories\Contracts\CategoryRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use CodeDelivery\Repositories\OrderItemRepository;
-use CodeDelivery\Models\OrderItem;
+use CodeDelivery\Models\Category;
 
 /**
- * Class OrderItemRepositoryEloquent
+ * Class CategoryRepositoryEloquent
  * @package namespace CodeDelivery\Repositories;
  */
-class OrderItemRepositoryEloquent extends BaseRepository implements OrderItemRepository
+class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepository
 {
+
     /**
      * Specify Model class name
      *
@@ -21,7 +21,7 @@ class OrderItemRepositoryEloquent extends BaseRepository implements OrderItemRep
      */
     public function model()
     {
-        return OrderItem::class;
+        return Category::class;
     }
 
     /**

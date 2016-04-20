@@ -4,7 +4,7 @@ namespace CodeDelivery\Http\Controllers;
 
 use CodeDelivery\Http\Requests\AdminCategoryRequest;
 use CodeDelivery\Http\Requests;
-use CodeDelivery\Repositories\CategoryRepository;
+use CodeDelivery\Repositories\Contracts\CategoryRepository;
 
 class CategoriesController extends Controller
 {
