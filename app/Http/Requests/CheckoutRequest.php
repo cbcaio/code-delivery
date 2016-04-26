@@ -38,10 +38,13 @@ class CheckoutRequest extends Request
         return $rules;
     }
 
+    /**
+     * @param       $key
+     * @param array $rules
+     */
     public function buildRulesItems($key, array &$rules)
     {
         $rules['items.' . $key . '.product_id'] = 'required';
         $rules['items.' . $key . '.qtd']        = 'required';
-
     }
 }

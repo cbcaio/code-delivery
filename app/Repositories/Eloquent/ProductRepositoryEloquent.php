@@ -9,6 +9,7 @@ use CodeDelivery\Models\Product;
 
 /**
  * Class ProductRepositoryEloquent
+ *
  * @package namespace CodeDelivery\Repositories;
  */
 class ProductRepositoryEloquent extends BaseRepository implements ProductRepository

@@ -2,6 +2,7 @@
 
 namespace CodeDelivery\Repositories\Eloquent;
 
+use CodeDelivery\Presenters\UserPresenter;
 use CodeDelivery\Repositories\Contracts\UserRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -9,10 +10,13 @@ use CodeDelivery\Models\User;
 
 /**
  * Class UserRepositoryEloquent
+ *
  * @package namespace CodeDelivery\Repositories;
  */
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
+    protected $skipPresenter = true;
+
     /**
      * Specify Model class name
      *
@@ -23,9 +27,20 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         return User::class;
     }
 
+    /**
+     * @return mixed
+     */
+    public function presenter()
+    {
+        return UserPresenter::class;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getDeliveryman()
     {
-        return $this->model->where(['role' => 'deliveryman'])->lists('name','id');
+        return $this->model->where(['role' => 'deliveryman'])->lists('name', 'id');
     }
 
     /**

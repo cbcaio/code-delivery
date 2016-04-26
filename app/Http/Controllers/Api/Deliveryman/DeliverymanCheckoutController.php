@@ -19,6 +19,12 @@ class DeliverymanCheckoutController extends Controller
      */
     private $orderService;
 
+    private $withIncludes = [
+        'client',
+        'cupom',
+        'items'
+    ];
+
     /**
      * @param OrderRepository $orderRepository
      * @param OrderService    $orderService
@@ -37,10 +43,12 @@ class DeliverymanCheckoutController extends Controller
         $authenticated_id = Authorizer::getResourceOwnerId();
 
         $orders = $this->orderRepository
-            ->with(['items'])
+            ->skipPresenter(false)
+            ->with($this->withIncludes)
             ->scopeQuery(function ($query) use ($authenticated_id) {
                 return $query->where('user_deliveryman_id', '=', $authenticated_id);
-            })->paginate();
+            })
+            ->paginate();
 
         return $orders;
     }
@@ -53,7 +61,9 @@ class DeliverymanCheckoutController extends Controller
     {
         $authenticated_id = Authorizer::getResourceOwnerId();
 
-        return $this->orderRepository->getByIdAndDeliveryman($id, $authenticated_id);
+        return $this->orderRepository
+            ->skipPresenter(false)
+            ->getByIdAndDeliveryman($id, $authenticated_id);
     }
 
     /**
@@ -67,7 +77,7 @@ class DeliverymanCheckoutController extends Controller
         $order        = $this->orderService->updateStatus($orderId, $idDeliveyman, $request->get('status'));
 
         if ($order) {
-            return $order;
+            return $this->orderRepository->find($order->id);
         }
 
         abort(400, "Order não encontrada");

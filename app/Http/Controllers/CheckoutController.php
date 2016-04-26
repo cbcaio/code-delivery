@@ -2,6 +2,7 @@
 
 namespace CodeDelivery\Http\Controllers;
 
+use CodeDelivery\Http\Requests\CheckoutRequest;
 use CodeDelivery\Repositories\Contracts\OrderRepository;
 use CodeDelivery\Repositories\Contracts\ProductRepository;
 use CodeDelivery\Repositories\Contracts\UserRepository;
@@ -28,6 +29,12 @@ class CheckoutController extends Controller
      */
     private $service;
 
+    /**
+     * @param OrderRepository   $orderRepository
+     * @param UserRepository    $userRepository
+     * @param ProductRepository $productRepository
+     * @param OrderService      $service
+     */
     public function __construct(
         OrderRepository $orderRepository,
         UserRepository $userRepository,
@@ -41,6 +48,9 @@ class CheckoutController extends Controller
         $this->service           = $service;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $clientId = $this->userRepository->find(Auth::user()->id)->client->id;
@@ -53,14 +63,26 @@ class CheckoutController extends Controller
     }
 
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
-        dd('checkout ctrl create');
-        $products = $this->productRepository->lists();
+        $products = $this->productRepository->all([
+            'id',
+            'name',
+            'price'
+        ]);
+
         return view('customer.order.create', compact('products'));
     }
 
-    public function store(Request $request)
+    /**
+     * @param CheckoutRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function store(CheckoutRequest $request)
     {
         $data              = $request->all();
         $clientId          = $this->userRepository->find(Auth::user()->id)->client->id;

@@ -1,10 +1,10 @@
 <?php
 
 Route::group([
-                 'as'         => 'customer.',
-                 'middleware' => 'auth.checkrole:client'
-             ], function ()
-{
+    'as'         => 'customer.',
+    'middleware' => 'auth.checkrole:client',
+    'prefix'     => 'customer'
+], function () {
 
     Route::get('order', ['as' => 'order.index', 'uses' => 'CheckoutController@index']);
     Route::get('order/create', ['as' => 'order.create', 'uses' => 'CheckoutController@create']);

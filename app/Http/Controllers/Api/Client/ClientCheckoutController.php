@@ -24,6 +24,12 @@ class ClientCheckoutController extends Controller
      */
     private $orderService;
 
+    private $withIncludes = [
+        'client',
+        'cupom',
+        'items'
+    ];
+
     public function __construct(
         OrderRepository $orderRepository,
         OrderService $orderService,
@@ -41,9 +47,13 @@ class ClientCheckoutController extends Controller
     {
         $authenticated_id = Authorizer::getResourceOwnerId();
         $clientId         = $this->userRepository->find($authenticated_id)->client->id;
-        $orders           = $this->orderRepository->with(['items'])->scopeQuery(function ($query) use ($clientId) {
-            return $query->where('client_id', '=', $clientId);
-        })->paginate();
+        $orders           = $this->orderRepository
+            ->skipPresenter(false)
+            ->with($this->withIncludes)
+            ->scopeQuery(function ($query) use ($clientId) {
+                return $query->where('client_id', '=', $clientId);
+            })
+            ->paginate();
 
         return $orders;
     }
@@ -55,14 +65,16 @@ class ClientCheckoutController extends Controller
      */
     public function store(CheckoutRequest $request)
     {
-        $authenticated_id             = Authorizer::getResourceOwnerId();
-        $data                         = $request->all();
-        $clientId                     = $this->userRepository->find($authenticated_id)->client->id;
-        $data['client_id']            = $clientId;
-        $created_order                = $this->orderService->create($data);
-        $creater_order_with_relations = $this->orderRepository->with(['items'])->find($created_order->id);
+        $authenticated_id  = Authorizer::getResourceOwnerId();
+        $data              = $request->all();
+        $clientId          = $this->userRepository->find($authenticated_id)->client->id;
+        $data['client_id'] = $clientId;
+        $created_order     = $this->orderService->create($data);
 
-        return $creater_order_with_relations;
+        return $this->orderRepository
+            ->skipPresenter(false)
+            ->with($this->withIncludes)
+            ->find($created_order->id);
     }
 
     /**
@@ -71,9 +83,9 @@ class ClientCheckoutController extends Controller
      */
     public function show($id)
     {
-        $order = $this->orderRepository->with(['client', 'items.product', 'cupom'])->find($id);
-
-        return $order;
+        return $this->orderRepository
+            ->skipPresenter(false)
+            ->with($this->withIncludes)
+            ->find($id);
     }
-
 }

@@ -12,7 +12,9 @@ Route::group([
     Route::get('authenticated', function (\CodeDelivery\Repositories\Contracts\UserRepository $userRepository) {
         $authenticated_id = Authorizer::getResourceOwnerId();
 
-        return $userRepository->find($authenticated_id);
+        return $userRepository
+            ->skipPresenter(false)
+            ->find($authenticated_id);
     });
 
     Route::group([
