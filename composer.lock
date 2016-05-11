@@ -4,9 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "029280b252e8ad8aee4ef46bd2d08ce3",
-    "content-hash": "df199c720f642b6b262de15ed6752306",
+    "hash": "d089237d2d0bd1dd52e64a2de70383e0",
+    "content-hash": "6bc0be16ffe41901042364b028edc842",
     "packages": [
+        {
+            "name": "barryvdh/laravel-cors",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-cors.git",
+                "reference": "7bdc56f5ee5922eba3789d01b681781ba39defa9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-cors/zipball/7bdc56f5ee5922eba3789d01b681781ba39defa9",
+                "reference": "7bdc56f5ee5922eba3789d01b681781ba39defa9",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.1.x|5.2.x|5.3.x",
+                "php": ">=5.5.9",
+                "symfony/http-foundation": "~2.7|~3.0",
+                "symfony/http-kernel": "~2.7|~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Barryvdh\\Cors\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "Adds CORS (Cross-Origin Resource Sharing) headers support in your Laravel application",
+            "keywords": [
+                "api",
+                "cors",
+                "crossdomain",
+                "laravel"
+            ],
+            "time": "2016-05-01 15:28:13"
+        },
         {
             "name": "bestmomo/scafold",
             "version": "dev-master",
@@ -460,7 +513,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/532c9f8f4fdffb479a69920b94f290ae1b20ade2",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/6c9edd86098fbc23cc775a2b145135031eb980be",
                 "reference": "bdb01c499305ede9d6f8caec57649bbaca4dd5e3",
                 "shasum": ""
             },
@@ -638,7 +691,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/94294e4b9feec0b9a126d729812eb411ec7b577d",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f9523f5cdb0d61953cf2cc968f973d40bf760088",
                 "reference": "e5d2baf1a626120f9fa4b72f368dc7c201fe3541",
                 "shasum": ""
             },
@@ -1183,7 +1236,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andersao/l5-repository/zipball/4f34bd3e38b29c9cbb562ab5ea545a6d4aae1f34",
+                "url": "https://api.github.com/repos/andersao/l5-repository/zipball/8ed5d4562493dc9e339eba1d34c9b327a32f96e5",
                 "reference": "4a95e7db28eb4ccc10b23c4ac8684cf99c227d0d",
                 "shasum": ""
             },
@@ -1402,7 +1455,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/fffbc0e2a7e376dbb0a4b5f2ff6847330f20ccf9",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/68f50da0fdd6cb0146d17d6bde20b76e0e57e7fb",
                 "reference": "fffbc0e2a7e376dbb0a4b5f2ff6847330f20ccf9",
                 "shasum": ""
             },
@@ -1567,7 +1620,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/3b97c83b471d49c3d1187d67b501d1e703ee3928",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/5fe2066e79ed4c55e70b06083c591b91e9c192d8",
                 "reference": "3b97c83b471d49c3d1187d67b501d1e703ee3928",
                 "shasum": ""
             },
@@ -1679,7 +1732,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/81c4c51f7fd6d0d40961bd53dd60cade32db6ed6",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/a158f13992a3147d466af7a23b564ac719a4ddd8",
                 "reference": "47d2d8cade9b1c3987573d2943bb9352536cdb87",
                 "shasum": ""
             },
@@ -1844,7 +1897,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/d2370ed5b902cfefff016c6247661cb2ebe30ee7",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/cea62c83a012a3213093a43b2aa2e72884c14d85",
                 "reference": "cbfda0e775dca1a185034b1e3c42c1d36a490bf9",
                 "shasum": ""
             },
@@ -2142,7 +2195,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/routing/zipball/e3eab95685cdb3eae4bb36ed094bd277ee0f0fce",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/07c44ac73b42f7c6123fc024ccab03a36e87a2cc",
                 "reference": "b9925bb6b46b338d7ac33ef4200e19af5da53e34",
                 "shasum": ""
             },
@@ -2386,7 +2439,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/de3055a8e7935dfecf7a8fca32a92f566da23114",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/a03ffeaa4815fdfe1030fe83885e115185883075",
                 "reference": "72acfb159396b03ef5ef7f9e2bdfb8a361076d1e",
                 "shasum": ""
             },
@@ -2440,7 +2493,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/e97ed532f09e290b91ff7713b785ed7ab11d0812",
+                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/f7b31bdbdceaaea930c71df20e4180b0b7172b4a",
                 "reference": "e97ed532f09e290b91ff7713b785ed7ab11d0812",
                 "shasum": ""
             },
@@ -2557,7 +2610,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/ccef6542a4f9c1098fce823c42da7aab4264d385",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/191fc2b648e1b00ad4725fcae0ab0729537725c8",
                 "reference": "8deb6343c80c4edf546a6fff01a2b05c7dc59ac4",
                 "shasum": ""
             },
@@ -2658,7 +2711,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/d9302891c1f0a0ac5a4f66725163a00537c6359f",
+                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/e6109df274647c38a5be0141d4227db67ace1943",
                 "reference": "d9302891c1f0a0ac5a4f66725163a00537c6359f",
                 "shasum": ""
             },
@@ -2945,7 +2998,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/b02221e42163be673f9b44a0bc92a8b4907a7c6d",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/7ca4182b3acbd19ebbf3ced4dfee12487d9c05aa",
                 "reference": "b02221e42163be673f9b44a0bc92a8b4907a7c6d",
                 "shasum": ""
             },
@@ -3247,7 +3300,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3c4becbce99732549949904c47b76ffe602a7595",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/cb07302bcc264a177461bd8112c73eb2cd19aed6",
                 "reference": "78e05b2c945073d0cf59139b7e654aeec7b1ac1c",
                 "shasum": ""
             },
@@ -3491,7 +3544,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/2292b116f43c272ff4328083096114f84ea46a56",
                 "reference": "dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf",
                 "shasum": ""
             },
