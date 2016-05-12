@@ -53,12 +53,7 @@ angular.module('starter', [
                 url: '/home',
                 templateUrl: 'templates/home.html',
                 controller: 'HomeController'
-            })
-            .state('home.user', {
-                url: '/user',
-                templateUrl: 'templates/loggedUser.html'
-            })
-        ;
+            });
 
         //$urlRouterProvider.otherwise('/');
     });

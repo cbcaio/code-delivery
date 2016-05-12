@@ -4,12 +4,32 @@
     </ion-nav-title>
     <ion-content class="padding">
         <div class="list">
+            <div class="list">
 
-            <a class="item item-icon-left" ui-href="home.user">
-                <i class="icon ion-information-circled"></i>
-                User Details
-            </a>
-            {{ loggedUser }}
+                <div class="item item-divider">
+                    Authenticated User Details
+                </div>
+
+                <div class="row item">
+                    <div class="col">ID</div>
+                    <div class="col text-right">{{ loggedUser.data.id }}</div>
+                </div>
+
+                <div class="row item">
+                    <div class="col">Name</div>
+                    <div class="col text-right">{{ loggedUser.data.name }}</div>
+                </div>
+
+                <div class="row item">
+                    <div class="col">Email</div>
+                    <div class="col text-right">{{ loggedUser.data.email }}</div>
+                </div>
+
+                <div class="row item">
+                    <div class="col">Role</div>
+                    <div class="col text-right">{{ loggedUser.data.role }}</div>
+                </div>
+            </div>
         </div>
     </ion-content>
 </ion-view>
