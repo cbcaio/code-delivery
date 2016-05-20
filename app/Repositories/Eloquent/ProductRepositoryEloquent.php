@@ -2,6 +2,7 @@
 
 namespace CodeDelivery\Repositories\Eloquent;
 
+use CodeDelivery\Presenters\ProductPresenter;
 use CodeDelivery\Repositories\Contracts\ProductRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -14,6 +15,7 @@ use CodeDelivery\Models\Product;
  */
 class ProductRepositoryEloquent extends BaseRepository implements ProductRepository
 {
+    protected $skipPresenter = true;
 
     /**
      * Specify Model class name
@@ -41,5 +43,13 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
     public function resetScope()
     {
         // TODO: Implement resetScope() method.
+    }
+
+    /**
+     * @return mixed
+     */
+    public function presenter()
+    {
+        return ProductPresenter::class;
     }
 }

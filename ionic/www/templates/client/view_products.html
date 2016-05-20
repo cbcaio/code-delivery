@@ -1,0 +1,18 @@
+<ion-view>
+    <ion-nav-title>Nossos Produtos</ion-nav-title>
+    <div class="bar bar-subheader">
+        <h2 class="title">Escolhe seu produto</h2>
+    </div>
+    <ion-content class="padding has-subheader">
+
+        <ion-list>
+            <ion-item ng-repeat="obj in products" ng-click="addItem(obj)">
+                {{ obj.name }}
+                <span class="item-note">
+                    <i class="ion ion-cash">{{ obj.price }}</i>
+                </span>
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-view>

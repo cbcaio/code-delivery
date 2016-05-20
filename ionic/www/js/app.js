@@ -3,13 +3,18 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
+angular.module('starter.controllers', []);
+angular.module('starter.services', []);
 angular.module('starter', [
     'ionic',
     'starter.controllers',
-    'starter.controllers2',
-    'angular-oauth2'
+    'starter.services',
+    'angular-oauth2',
+    'ngResource'
 ])
-
+    .constant('appConfig',{
+        baseUrl: 'http://code-delivery.dev:8000'
+    })
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -27,10 +32,10 @@ angular.module('starter', [
             }
         });
     })
-    .config(function ($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, appConfig) {
 
         OAuthProvider.configure({
-            baseUrl: 'http://code-delivery.dev:8000/',
+            baseUrl: appConfig.baseUrl,
             clientId: 'appid01',
             clientSecret: 'secret', // optional
             grantPath: '/oauth/access_token'
@@ -53,7 +58,34 @@ angular.module('starter', [
                 url: '/home',
                 templateUrl: 'templates/home.html',
                 controller: 'HomeController'
+            })
+            .state('client', {
+                abstract: true,
+                url: '/client',
+                template: '<ion-nav-view/>'
+            })
+            .state('client.checkout', {
+                cache: false,
+                url: '/checkout',
+                templateUrl: 'templates/client/checkout.html',
+                controller: 'ClientCheckoutController'
+            })
+            .state('client.checkout_item_detail', {
+                url: '/checkout/detail/:index',
+                templateUrl: 'templates/client/checkout_item_detail.html',
+                controller: 'ClientCheckoutDetailController'
+            })
+            .state('client.checkout_successful', {
+                url: '/checkout/successful',
+                templateUrl: 'templates/client/checkout_successful.html',
+                controller: 'ClientCheckoutSuccessfulController'
+            })
+            .state('client.view_products', {
+                url: '/view_products',
+                templateUrl: 'templates/client/view_products.html',
+                controller: 'ClientViewProductController'
             });
+
 
         //$urlRouterProvider.otherwise('/');
     });

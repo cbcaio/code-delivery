@@ -1,0 +1,26 @@
+<ion-view>
+    <ion-nav-title>Pedido realizado com sucesso</ion-nav-title>
+    <div class="bar bar-balanced bar-subheader">
+        <h2 class="title">Total: R$ {{ total }}</h2>
+    </div>
+    <ion-content class="padding has-subheader">
+
+        <ion-list>
+            <ion-item ng-repeat="obj in items">
+                {{ obj.name }}
+                <div class="row">
+                    <div class="col">
+                        Qtd: {{ obj.qtd }} <br>
+                        <i class="ion ion-cash"> {{ obj.price }}</i>
+                    </div>
+                    <div class="col text-right">
+                        <i class="ion ion-social-usd">{{ obj.qtd * obj.price }}</i>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <button type="button" class="button button-royal button-full" ng-click="openListOrder()">
+            Ver meus pedidos
+        </button>
+    </ion-content>
+</ion-view>

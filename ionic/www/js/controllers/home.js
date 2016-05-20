@@ -1,5 +1,5 @@
 angular
-    .module('starter.controllers2', [])
+    .module('starter.controllers')
     .controller('HomeController', [
         '$scope', '$state', '$cookies', '$http',
         function ($scope, $state, $cookies, $http) {

@@ -31,6 +31,8 @@ Route::group([
             Route::resource('order', 'Api\Client\ClientCheckoutController',
                 ['except' => ['create', 'edit', 'destroy']]);
 
+            Route::get('products', 'Api\Client\ClientProductController@index');
+
         });
 
         Route::group([

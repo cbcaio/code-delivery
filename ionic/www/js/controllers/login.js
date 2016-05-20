@@ -1,5 +1,5 @@
 angular
-    .module('starter.controllers', [])
+    .module('starter.controllers')
     .controller('LoginController', [
         '$scope', 'OAuth', '$state', '$ionicPopup',
         function ($scope, OAuth, $state, $ionicPopup) {

@@ -12,7 +12,6 @@ use CodeDelivery\Models\Product;
  */
 class ProductTransformer extends TransformerAbstract
 {
-
     /**
      * Transform the \Product entity
      *
@@ -22,9 +21,12 @@ class ProductTransformer extends TransformerAbstract
     public function transform(Product $model)
     {
         return [
-            'id'    => (int)$model->id,
-            'name'  => $model->name,
-            'price' => (float)$model->price
+            'id'          => (int)$model->id,
+            'name'        => $model->name,
+            'description' => $model->description,
+            'price'       => (float)$model->price,
+            'created_at'  => $model->created_at,
+            'updated_at'  => $model->updated_at,
         ];
     }
 }
