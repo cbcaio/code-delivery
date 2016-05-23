@@ -1,0 +1,21 @@
+<ion-view>
+    <ion-nav-title>Pedidos</ion-nav-title>
+    <div class="bar bar-subheader">
+        <h2 class="title">Historico de Pedidos</h2>
+    </div>
+    <ion-content class="padding has-subheader">
+
+        <ion-list>
+            <ion-item class="item item-button-right" ng-repeat="obj in orders" ng-click="addItem(obj)">
+                <h2>Status: {{ obj.status }}</h2>
+                Total: R${{ obj.total }}<br>
+                 <i class="icon ion-ios-cart"> Items: {{ obj.quantity_items }}</i><br>
+
+                <button class="button button-outline button-stable">
+                    <i class="icon-left ion-calendar"> {{ obj.created_at }}</i>
+                </button>
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-view>

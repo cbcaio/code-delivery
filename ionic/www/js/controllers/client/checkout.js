@@ -6,6 +6,7 @@ angular.module('starter.controllers')
 
             $scope.items = cart.items;
             $scope.total = cart.total;
+            $scope.orders = [];
 
             $scope.removeItem = function (index) {
                 $cart.removeItem(index);
@@ -33,7 +34,7 @@ angular.module('starter.controllers')
 
                 Order.save({id: null}, {items: items}, function (data) {
                     $ionicLoading.hide();
-                    $state.go('client.checkout_successful');
+                    $state.go('client.checkout_successful', {data : data});
                 }, function (responseError) {
                     $ionicLoading.hide();
                     $ionicPopup.alert({

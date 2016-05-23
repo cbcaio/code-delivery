@@ -50,4 +50,22 @@ class Order extends Model implements Transformable
         return $this->belongsTo(User::class, 'user_deliveryman_id', 'id');
     }
 
+    /**
+     * @return null|string
+     */
+    public function getStatusAttribute()
+    {
+        switch ($this->attributes['status']) {
+            case 0:
+                $word = 'Não entregue';
+                break;
+            case 1:
+                $word = "Entregue";
+                break;
+            default:
+                return null;
+        }
+
+        return $word;
+    }
 }

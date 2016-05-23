@@ -32,9 +32,10 @@ class OrderTransformer extends TransformerAbstract
     public function transform(Order $model)
     {
         return [
-            'total'      => (float)$model->total,
-            'status'     => $model->status,
-            'created_at' => $model->created_at
+            'total'          => (float)$model->total,
+            'status'         => $model->status,
+            'created_at'     => $model->created_at->toDateString(),
+            'quantity_items' => $model->items()->count()
         ];
     }
 

@@ -84,6 +84,11 @@ angular.module('starter', [
                 url: '/view_products',
                 templateUrl: 'templates/client/view_products.html',
                 controller: 'ClientViewProductController'
+            })
+            .state('client.view_orders', {
+                url: '/view_orders',
+                templateUrl: 'templates/client/view_orders.html',
+                controller: 'ClientViewOrderController'
             });
 
 
